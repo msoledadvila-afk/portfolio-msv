@@ -337,9 +337,6 @@
     }
 
     /* PRODUCTS — versión ampliada ================================ */
-    /* Estrategia: sección a ancho extendido, cards grandes con
-       aspect-ratio 4/3 (mejor para apps verticales y dashboards),
-       en mobile cada card ocupa todo el ancho con alto generoso. */
     .products-section {
       max-width: var(--container-wide);
     }
@@ -362,7 +359,7 @@
     }
     .product-video {
       width: 100%;
-      aspect-ratio: 4 / 3;          /* +33% de altura vs 16:9 */
+      aspect-ratio: 4 / 3;
       background: var(--bg-alt);
       display: grid; place-items: center;
       position: relative; overflow: hidden;
@@ -455,6 +452,88 @@
       background: var(--bg);
     }
 
+    /* CONTENT / COMMUNITY MANAGEMENT ============================ */
+    .content-section { max-width: var(--container-wide); }
+    .content-intro {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-12);
+      align-items: start;
+      margin-bottom: var(--space-16);
+    }
+    .content-intro .about-text p + p { margin-top: var(--space-4); }
+    .content-skills {
+      list-style: none;
+      display: flex; flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-6);
+    }
+    .content-skills li {
+      font-size: 0.78rem;
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      color: var(--text-dim);
+      background: var(--bg-card);
+    }
+    .client-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .client-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: var(--space-8) var(--space-6);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .client-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-soft);
+      box-shadow: var(--shadow-md);
+    }
+    .client-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent-deep);
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+    }
+    .client-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.01em;
+    }
+    .client-card p {
+      color: var(--text-dim);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .client-card ul {
+      list-style: none;
+      margin-top: var(--space-4);
+      display: flex; flex-direction: column;
+      gap: var(--space-2);
+    }
+    .client-card ul li {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      padding-left: var(--space-4);
+      position: relative;
+    }
+    .client-card ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 0.55em;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+    }
+
     /* CONTACT =================================================== */
     .contact { text-align: center; }
     .contact h2 {
@@ -534,14 +613,13 @@
        BREAKPOINTS — escalado responsive en capas
        ============================================================ */
 
-    /* Tablet horizontal y desktop chico */
     @media (max-width: 1024px) {
       section { padding: var(--space-20) var(--space-6); }
       .product-grid { gap: var(--space-6); }
       .nav-links { gap: var(--space-6); }
+      .client-cards { grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* Tablet vertical / mobile grande — corte clave del nav */
     @media (max-width: 768px) {
       :root { --nav-h: 64px; }
 
@@ -577,9 +655,11 @@
       .about-grid { grid-template-columns: 1fr; gap: var(--space-8); }
       .eco-cards { grid-template-columns: 1fr; gap: var(--space-4); }
 
-      /* PRODUCTS: una columna, video MÁS grande */
       .product-grid { grid-template-columns: 1fr; gap: var(--space-6); }
-      .product-video { aspect-ratio: 16 / 10; }   /* más alto en mobile */
+      .product-video { aspect-ratio: 16 / 10; }
+
+      .content-intro { grid-template-columns: 1fr; gap: var(--space-8); }
+      .client-cards { grid-template-columns: 1fr; gap: var(--space-4); }
 
       .hero-stats { gap: var(--space-8); }
       .trust { padding: var(--space-8) var(--space-5); }
@@ -588,7 +668,6 @@
       .contact-links a { justify-content: center; }
     }
 
-    /* Mobile chico */
     @media (max-width: 480px) {
       section { padding: var(--space-12) var(--space-4); }
       .hero h1 { letter-spacing: -0.03em; }
@@ -601,7 +680,6 @@
       .trust-badges { gap: var(--space-2); }
     }
 
-    /* Pantallas grandes — un poco más de aire */
     @media (min-width: 1400px) {
       .products-section { max-width: var(--container-wide); }
       .product-grid { gap: var(--space-10); }
@@ -610,13 +688,10 @@
 </head>
 <body>
 
-<!-- =============================================================
-     NAV — Marca cambiada a "María Soledad Vila" con rol abajo
-     ============================================================= -->
 <nav>
   <a href="#hero" class="nav-brand" aria-label="María Soledad Vila — inicio">
     <span class="nav-brand-name">María Soledad Vila</span>
-    <span class="nav-brand-role">Vibe Coder · Arquitecta Digital</span>
+    <span class="nav-brand-role">Vibe Coder · Community Manager</span>
   </a>
   <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false"
           onclick="const t=this,l=document.querySelector('.nav-links');l.classList.toggle('open');t.setAttribute('aria-expanded',l.classList.contains('open'));">
@@ -626,6 +701,7 @@
     <li><a href="#about">Sobre mí</a></li>
     <li><a href="#ecosystem">Ecosistema</a></li>
     <li><a href="#products">Productos</a></li>
+    <li><a href="#content">Contenido</a></li>
     <li><a href="#trust">Confianza</a></li>
     <li><a href="#contact">Contacto</a></li>
   </ul>
@@ -633,12 +709,13 @@
 
 <!-- HERO ===================================================== -->
 <section class="hero" id="hero">
-  <p class="hero-tag">Vibe Coder · Arquitecta Digital</p>
-  <h1>Construyo <span>aplicaciones<br/>con IA</span> que devuelven<br/>el control.</h1>
-  <p class="hero-sub">Desarrollo web low-code, vibe coding e inteligencia artificial integrada de forma nativa para PyMEs y profesionales.</p>
+  <p class="hero-tag">Vibe Coder · Arquitecta Digital · Community Manager</p>
+  <h1>Construyo <span>aplicaciones<br/>con IA</span> y contenido<br/>que conecta.</h1>
+  <p class="hero-sub">Desarrollo web low-code, vibe coding e inteligencia artificial integrada de forma nativa — y gestiono la comunicación digital de marcas que necesitan una voz clara en redes.</p>
   <div class="hero-stats">
     <div><div class="stat-num">10+</div><div class="stat-label">Horas recuperadas / semana</div></div>
     <div><div class="stat-num">100%</div><div class="stat-label">Estandarización de procesos</div></div>
+    <div><div class="stat-num">3</div><div class="stat-label">Marcas en gestión de contenido</div></div>
   </div>
 </section>
 
@@ -673,19 +750,7 @@
   </div>
 </section>
 
-<!-- =============================================================
-     PRODUCTOS EN ACCIÓN — VIDEO MOCKUPS
-     Para cada producto, colocá tu video .mp4 o .webm en /videos/
-     Estructura del repo:
-       index.html
-       videos/
-         prompt-studio.mp4
-         pack-autonomia.mp4
-         english-app.mp4
-         dashboard-contable.mp4
-         scripts-comerciales.mp4
-         rrhh-studio.mp4
-     ============================================================= -->
+<!-- PRODUCTOS EN ACCIÓN ====================================== -->
 <section id="products" class="reveal products-section">
   <div class="section-head">
     <h2>Productos en <span>Acción</span></h2>
@@ -783,6 +848,63 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- CONTENIDO & COMMUNITY MANAGEMENT ========================== -->
+<section id="content" class="reveal content-section">
+  <div class="section-head">
+    <h2>Creadora de Contenido & <span>Community Manager</span></h2>
+    <p>Estrategia, diseño y gestión de redes sociales para marcas que necesitan una voz clara y constante — potenciada con IA, sin perder el criterio humano.</p>
+  </div>
+
+  <div class="content-intro">
+    <div class="about-text">
+      <p>Además de construir software, gestiono la presencia digital completa de distintas marcas: estrategia de contenidos, calendario editorial, reels, stories, campañas y análisis de métricas en Meta Business Suite y Google Analytics.</p>
+      <p>Uso Prompt Engineering avanzado con ChatGPT, Claude y Gemini para producir contenido de alto impacto, y diseño piezas gráficas con Canva IA adaptadas a cada público y formato.</p>
+    </div>
+    <ul class="content-skills">
+      <li>Estrategia de Contenidos</li>
+      <li>Gestión de Redes Sociales</li>
+      <li>Meta Business Suite</li>
+      <li>Google Analytics</li>
+      <li>Canva IA</li>
+      <li>Copywriting con IA</li>
+      <li>Calendario Editorial</li>
+    </ul>
+  </div>
+
+  <div class="client-cards">
+    <div class="client-card">
+      <div class="client-tag">Bienestar & Movimiento</div>
+      <h3>Academia de Pilates</h3>
+      <p>Contenido pensado para acompañar el proceso de cada alumno: de la primera clase a la constancia.</p>
+      <ul>
+        <li>Reels y stories de clases y resultados</li>
+        <li>Calendario editorial mensual</li>
+        <li>Copy orientado a captación de alumnos</li>
+      </ul>
+    </div>
+    <div class="client-card">
+      <div class="client-tag">Bienes Raíces</div>
+      <h3>Agente Inmobiliario</h3>
+      <p>Contenido que construye confianza en una decisión de alto valor: comprar, vender o alquilar.</p>
+      <ul>
+        <li>Publicación de propiedades y tours</li>
+        <li>Contenido educativo sobre el mercado</li>
+        <li>Piezas gráficas con Canva IA</li>
+      </ul>
+    </div>
+    <div class="client-card">
+      <div class="client-tag">Industria & Tecnología</div>
+      <h3>Colectores de Datos Industriales</h3>
+      <p>Contenido técnico traducido a un lenguaje claro para decisores de compra B2B.</p>
+      <ul>
+        <li>Contenido educativo sobre especificaciones técnicas</li>
+        <li>Posicionamiento como referente técnico</li>
+        <li>Estrategia de contenidos en Instagram</li>
+      </ul>
+    </div>
   </div>
 </section>
 
