@@ -7,7 +7,7 @@
   <meta name="description" content="Desarrollo aplicaciones web con IA integrada. Autonomía digital para PyMEs y profesionales en Argentina." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -15,21 +15,21 @@
        TOKENS — alineados con el Design System v1.0 · Portfolio
        ============================================================ */
     :root {
-      /* Color · sub-marca portfolio */
-      --bg: #f5f2f0;
-      --bg-alt: #eae5e1;
-      --bg-card: #ffffff;
-      --text: #2c2a2e;
-      --text-dim: #7a7580;
+      /* Color · tema oscuro unificado (extendido del hero a toda la página) */
+      --bg: #150f18;
+      --bg-alt: #1f1626;
+      --bg-card: #1f1826;
+      --text: #f5efe9;
+      --text-dim: #b8a9a0;
       --accent: #c4907c;
       --accent-soft: #d4a797;
-      --accent-deep: #a87464;
-      --accent-glow: rgba(196,144,124,0.12);
-      --accent-glow-strong: rgba(196,144,124,0.22);
-      --grey-warm: #b5b0ab;
-      --grey-dark: #4a464f;
-      --border: #ddd7d2;
-      --border-light: #e8e3df;
+      --accent-deep: #e3b492;
+      --accent-glow: rgba(196,144,124,0.14);
+      --accent-glow-strong: rgba(196,144,124,0.26);
+      --grey-warm: #9a8d87;
+      --grey-dark: #e8ddd6;
+      --border: rgba(245,239,233,0.12);
+      --border-light: rgba(245,239,233,0.08);
 
       /* Escala tipográfica modular (1.250) — del DS */
       --text-xs:   0.75rem;
@@ -47,6 +47,7 @@
       --space-1: .25rem; --space-2: .5rem; --space-3: .75rem;
       --space-4: 1rem;  --space-5: 1.25rem; --space-6: 1.5rem;
       --space-8: 2rem;  --space-10: 2.5rem; --space-12: 3rem;
+      --space-14: 3.5rem;
       --space-16: 4rem; --space-20: 5rem;  --space-24: 6rem;
 
       /* Radios y sombras (DS) */
@@ -57,8 +58,8 @@
       --shadow-lg: 0 12px 32px var(--accent-glow-strong);
 
       /* Tipografía */
-      --font-display: 'Syne', sans-serif;
-      --font-body: 'Outfit', sans-serif;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Manrope', sans-serif;
 
       /* Layout */
       --container: 1100px;
@@ -80,6 +81,12 @@
     img, video { max-width: 100%; display: block; }
     a { color: inherit; }
 
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      line-height: 1.12;
+      font-optical-sizing: auto;
+    }
+
     /* ============================================================
        NAV — María Soledad Vila (responsive con dos líneas elegantes)
        ============================================================ */
@@ -90,7 +97,7 @@
       display: flex; justify-content: space-between; align-items: center;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      background: rgba(245,242,240,0.85);
+      background: rgba(21,15,24,0.75);
       border-bottom: 1px solid var(--border-light);
       min-height: var(--nav-h);
     }
@@ -186,7 +193,7 @@
       opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
     }
     .hero h1 span {
-      background: linear-gradient(135deg, var(--accent-deep), var(--accent-soft));
+      background: linear-gradient(135deg, var(--accent-deep), #f0d9c5 55%, #d9a4c0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -218,21 +225,61 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
     }
-    .hero::before {
-      content: ''; position: absolute;
-      width: 450px; height: 450px;
-      right: -80px; top: 18%;
-      background: radial-gradient(circle, var(--accent-glow-strong) 0%, transparent 70%);
-      filter: blur(50px); pointer-events: none;
-      animation: pulse 7s ease-in-out infinite;
+    /* HERO — full-bleed, con leve resplandor propio además del fondo global */
+    .hero-dark {
+      max-width: none;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(ellipse 900px 600px at 78% 22%, rgba(196,144,124,0.14), transparent 60%);
     }
-    .hero::after {
-      content: ''; position: absolute;
-      width: 250px; height: 250px;
-      left: -60px; bottom: 20%;
-      background: radial-gradient(circle, rgba(181,176,171,0.15) 0%, transparent 70%);
-      filter: blur(40px); pointer-events: none;
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + var(--space-8)) var(--space-6) var(--space-24);
     }
+
+    /* LIGHTFALL — canvas fijo detrás de toda la página ============ */
+    .bg-canvas {
+      position: fixed; inset: 0;
+      width: 100vw; height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-cta {
+      display: flex; gap: var(--space-8);
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: var(--space-10);
+      opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+    }
+    .hero-btn {
+      position: relative;
+      display: inline-flex; align-items: center; gap: var(--space-3);
+      padding-bottom: var(--space-3);
+      font-family: var(--font-body);
+      font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px;
+      text-decoration: none;
+      color: #d8c8bf;
+      border-bottom: 1px solid rgba(216,200,191,0.3);
+      transition: color 0.3s, border-color 0.3s, gap 0.3s;
+    }
+    .hero-btn::after {
+      content: '→';
+      font-size: 0.95rem;
+      transition: transform 0.3s;
+    }
+    .hero-btn:hover {
+      gap: var(--space-4);
+    }
+    .hero-btn:hover::after { transform: translateX(3px); }
+    .hero-btn-primary { color: #e3b492; border-color: rgba(227,180,146,0.55); }
+    .hero-btn-primary:hover { color: #f0d9c5; border-color: #f0d9c5; }
+    .hero-btn-secondary { color: #d9a4c0; border-color: rgba(217,164,192,0.4); }
+    .hero-btn-secondary:hover { color: #f0c3dc; border-color: #f0c3dc; }
 
     /* ABOUT ===================================================== */
     .about-grid {
@@ -320,9 +367,10 @@
       border-radius: 12px;
       background: var(--accent-glow-strong);
       display: grid; place-items: center;
-      font-size: 1.4rem;
+      color: var(--accent-deep);
       margin-bottom: var(--space-5);
     }
+    .eco-card-icon svg { width: 22px; height: 22px; }
     .eco-card h3 {
       font-family: var(--font-display);
       font-size: 1.125rem;
@@ -465,16 +513,22 @@
     .content-skills {
       list-style: none;
       display: flex; flex-wrap: wrap;
-      gap: var(--space-2);
+      gap: var(--space-3);
       margin-top: var(--space-6);
     }
     .content-skills li {
-      font-size: 0.78rem;
-      padding: var(--space-2) var(--space-4);
-      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: var(--space-3) var(--space-5);
       border-radius: var(--radius-pill);
-      color: var(--text-dim);
-      background: var(--bg-card);
+      color: #1b1420;
+      background: linear-gradient(135deg, var(--accent-deep), var(--accent-soft));
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .content-skills li:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: var(--shadow-md);
     }
     .client-cards {
       display: grid;
@@ -482,29 +536,46 @@
       gap: var(--space-6);
     }
     .client-card {
+      position: relative;
       background: var(--bg-card);
       border: 1px solid var(--border-light);
       border-radius: var(--radius);
-      padding: var(--space-8) var(--space-6);
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      padding: var(--space-8) var(--space-6) var(--space-6);
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s, border-color 0.35s;
       display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .client-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 5px;
+      background: var(--client-accent, var(--accent-deep));
     }
     .client-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-soft);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-6px);
+      border-color: var(--client-accent, var(--accent-soft));
+      box-shadow: var(--shadow-lg);
     }
+    .client-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: grid; place-items: center;
+      color: var(--client-accent, var(--accent-deep));
+      margin-bottom: var(--space-5);
+      background: color-mix(in srgb, var(--client-accent, var(--accent-deep)) 18%, transparent);
+    }
+    .client-icon svg { width: 24px; height: 24px; }
     .client-tag {
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: var(--accent-deep);
-      font-weight: 600;
-      margin-bottom: var(--space-3);
+      color: var(--client-accent, var(--accent-deep));
+      font-weight: 700;
+      margin-bottom: var(--space-2);
     }
     .client-card h3 {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--text);
       margin-bottom: var(--space-3);
@@ -522,16 +593,31 @@
       gap: var(--space-2);
     }
     .client-card ul li {
-      font-size: 0.82rem;
-      color: var(--text-dim);
-      padding-left: var(--space-4);
+      font-size: 0.84rem;
+      color: var(--text);
+      padding-left: var(--space-5);
       position: relative;
+      font-weight: 500;
     }
     .client-card ul li::before {
       content: '';
-      position: absolute; left: 0; top: 0.55em;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
+      position: absolute; left: 0; top: 0.5em;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--client-accent, var(--accent));
+    }
+    .client-platforms {
+      display: flex; gap: var(--space-2); flex-wrap: wrap;
+      margin-top: var(--space-5);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border-light);
+    }
+    .client-platforms span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-pill);
+      color: var(--client-accent, var(--accent-deep));
+      background: color-mix(in srgb, var(--client-accent, var(--accent-deep)) 12%, transparent);
     }
 
     /* CONTACT =================================================== */
@@ -567,7 +653,7 @@
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .contact-links a:first-child {
-      background: var(--accent-deep); color: #fff;
+      background: var(--accent-deep); color: #1b1420;
     }
     .contact-links a:last-child {
       border: 1px solid var(--border); color: var(--text);
@@ -650,7 +736,8 @@
       .nav-links a::after { display: none; }
 
       section { padding: var(--space-16) var(--space-5); }
-      .hero { padding-top: calc(var(--nav-h) + var(--space-6)); }
+      .hero-content { padding-top: calc(var(--nav-h) + var(--space-6)); }
+      .hero-cta { flex-direction: column; align-items: flex-start; gap: var(--space-5); }
 
       .about-grid { grid-template-columns: 1fr; gap: var(--space-8); }
       .eco-cards { grid-template-columns: 1fr; gap: var(--space-4); }
@@ -688,6 +775,8 @@
 </head>
 <body>
 
+<canvas id="lightfall" class="bg-canvas" aria-hidden="true"></canvas>
+
 <nav>
   <a href="#hero" class="nav-brand" aria-label="María Soledad Vila — inicio">
     <span class="nav-brand-name">María Soledad Vila</span>
@@ -708,14 +797,20 @@
 </nav>
 
 <!-- HERO ===================================================== -->
-<section class="hero" id="hero">
-  <p class="hero-tag">Vibe Coder · Arquitecta Digital · Community Manager</p>
-  <h1>Construyo <span>aplicaciones<br/>con IA</span> y contenido<br/>que conecta.</h1>
-  <p class="hero-sub">Desarrollo web low-code, vibe coding e inteligencia artificial integrada de forma nativa — y gestiono la comunicación digital de marcas que necesitan una voz clara en redes.</p>
-  <div class="hero-stats">
-    <div><div class="stat-num">10+</div><div class="stat-label">Horas recuperadas / semana</div></div>
-    <div><div class="stat-num">100%</div><div class="stat-label">Estandarización de procesos</div></div>
-    <div><div class="stat-num">3</div><div class="stat-label">Marcas en gestión de contenido</div></div>
+<section class="hero hero-dark" id="hero">
+  <div class="hero-content">
+    <p class="hero-tag">Vibe Coder · Arquitecta Digital · Community Manager</p>
+    <h1>Construyo <span>aplicaciones<br/>con IA</span> y contenido<br/>que conecta.</h1>
+    <p class="hero-sub">Desarrollo web low-code, vibe coding e inteligencia artificial integrada de forma nativa — y gestiono la comunicación digital de marcas que necesitan una voz clara en redes.</p>
+    <div class="hero-cta">
+      <a href="#products" class="hero-btn hero-btn-primary">Vibe Coder & Desarrollo</a>
+      <a href="#content" class="hero-btn hero-btn-secondary">Community Manager</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">10+</div><div class="stat-label">Horas recuperadas / semana</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Estandarización de procesos</div></div>
+      <div><div class="stat-num">3</div><div class="stat-label">Marcas en gestión de contenido</div></div>
+    </div>
   </div>
 </section>
 
@@ -744,9 +839,9 @@
     <p>Componentes digitales integrados para productividad con conciencia y autonomía.</p>
   </div>
   <div class="eco-cards">
-    <div class="eco-card"><div class="eco-card-icon">⚙️</div><h3>Arquitectura Web</h3><p>Estructuras digitales que optimizan procesos y centralizan funciones en un ecosistema eficiente y colaborativo.</p></div>
-    <div class="eco-card"><div class="eco-card-icon">🤖</div><h3>Delegación Inteligente</h3><p>Automatización de tareas que permite a los equipos enfocarse en actividades estratégicas y de mayor valor.</p></div>
-    <div class="eco-card"><div class="eco-card-icon">🔒</div><h3>Seguridad de Datos</h3><p>Protocolo robusto que asegura la integridad de la información, garantizando privacidad y confianza.</p></div>
+    <div class="eco-card"><div class="eco-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg></div><h3>Arquitectura Web</h3><p>Estructuras digitales que optimizan procesos y centralizan funciones en un ecosistema eficiente y colaborativo.</p></div>
+    <div class="eco-card"><div class="eco-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8.2 7.4 10.6 16 M15.8 7.4 13.4 16 M8.5 6 H15.5"/></svg></div><h3>Delegación Inteligente</h3><p>Automatización de tareas que permite a los equipos enfocarse en actividades estratégicas y de mayor valor.</p></div>
+    <div class="eco-card"><div class="eco-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Seguridad de Datos</h3><p>Protocolo robusto que asegura la integridad de la información, garantizando privacidad y confianza.</p></div>
   </div>
 </section>
 
@@ -875,7 +970,8 @@
   </div>
 
   <div class="client-cards">
-    <div class="client-card">
+    <div class="client-card" style="--client-accent:#c4907c">
+      <div class="client-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.3"/><path d="M12 8v6"/><path d="M8 20c0-3 1.8-5 4-5s4 2 4 5"/><path d="M6.5 13c1.5-1 3-1 4 0M17.5 13c-1.5-1-3-1-4 0"/></svg></div>
       <div class="client-tag">Bienestar & Movimiento</div>
       <h3>Academia de Pilates</h3>
       <p>Contenido pensado para acompañar el proceso de cada alumno: de la primera clase a la constancia.</p>
@@ -884,8 +980,10 @@
         <li>Calendario editorial mensual</li>
         <li>Copy orientado a captación de alumnos</li>
       </ul>
+      <div class="client-platforms"><span>Instagram</span><span>Facebook</span></div>
     </div>
-    <div class="client-card">
+    <div class="client-card" style="--client-accent:#d1a17e">
+      <div class="client-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></div>
       <div class="client-tag">Bienes Raíces</div>
       <h3>Agente Inmobiliario</h3>
       <p>Contenido que construye confianza en una decisión de alto valor: comprar, vender o alquilar.</p>
@@ -894,8 +992,10 @@
         <li>Contenido educativo sobre el mercado</li>
         <li>Piezas gráficas con Canva IA</li>
       </ul>
+      <div class="client-platforms"><span>Instagram</span><span>WhatsApp</span></div>
     </div>
-    <div class="client-card">
+    <div class="client-card" style="--client-accent:#9db0c9">
+      <div class="client-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><path d="M9 9a4.2 4.2 0 0 1 6 0"/><path d="M6.3 6.3a8.2 8.2 0 0 1 11.4 0"/><path d="M9.8 15.5a2.5 2.5 0 0 1 4.4 0"/></svg></div>
       <div class="client-tag">Industria & Tecnología</div>
       <h3>Colectores de Datos Industriales</h3>
       <p>Contenido técnico traducido a un lenguaje claro para decisores de compra B2B.</p>
@@ -904,6 +1004,7 @@
         <li>Posicionamiento como referente técnico</li>
         <li>Estrategia de contenidos en Instagram</li>
       </ul>
+      <div class="client-platforms"><span>Instagram</span></div>
     </div>
   </div>
 </section>
@@ -953,6 +1054,117 @@
       }
     });
   });
+
+  /* =============================================================
+     LIGHTFALL — fondo animado del hero, hecho a medida con canvas.
+     Streaks diagonales con glow + twinkle + leve reacción al mouse.
+     Paleta tomada del acento de marca (terracota / rosé / champagne).
+     ============================================================= */
+  (function initLightfall() {
+    const canvas = document.getElementById('lightfall');
+    if (!canvas) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ctx = canvas.getContext('2d');
+    const colors = ['#c4907c', '#e3b492', '#f0d9c5', '#d9a4c0'];
+
+    let w = 0, h = 0, dpr = 1;
+    let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+    let streaks = [];
+
+    function sizeFor(width) {
+      if (width < 640) return 9;
+      if (width < 1024) return 14;
+      return 20;
+    }
+
+    function resize() {
+      w = window.innerWidth; h = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      mouseX = targetX = w * 0.7;
+      mouseY = targetY = h * 0.3;
+      const count = sizeFor(w);
+      streaks = Array.from({ length: count }, () => new Streak(true));
+    }
+
+    function Streak(initial) {
+      this.reset(initial);
+    }
+    Streak.prototype.reset = function (initial) {
+      this.x = Math.random() * w;
+      this.y = initial ? Math.random() * h : -60;
+      this.len = 90 + Math.random() * 160;
+      this.speed = 1.6 + Math.random() * 2.4;
+      this.angle = 1.15; // caída diagonal suave
+      this.width = 1.4 + Math.random() * 1.8;
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.phase = Math.random() * Math.PI * 2;
+      this.baseOpacity = 0.35 + Math.random() * 0.45;
+    };
+    Streak.prototype.update = function () {
+      const pull = (mouseX - this.x) * 0.00006;
+      this.x += Math.cos(this.angle) * this.speed + pull;
+      this.y += Math.sin(this.angle) * this.speed;
+      this.phase += 0.05;
+      if (this.y - this.len > h || this.x > w + 80) this.reset(false);
+    };
+    Streak.prototype.draw = function () {
+      const twinkle = 0.65 + 0.35 * Math.sin(this.phase);
+      const tailX = this.x - Math.cos(this.angle) * this.len;
+      const tailY = this.y - Math.sin(this.angle) * this.len;
+      const grad = ctx.createLinearGradient(this.x, this.y, tailX, tailY);
+      grad.addColorStop(0, this.color);
+      grad.addColorStop(1, 'transparent');
+      ctx.save();
+      ctx.globalAlpha = this.baseOpacity * twinkle;
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = this.width;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(tailX, tailY);
+      ctx.stroke();
+      // punto brillante en la cabeza del streak — refuerza la sensación de movimiento
+      ctx.beginPath();
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = Math.min(1, this.baseOpacity * twinkle * 1.6);
+      ctx.arc(this.x, this.y, this.width * 0.9, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    };
+
+    function frame() {
+      mouseX += (targetX - mouseX) * 0.04;
+      mouseY += (targetY - mouseY) * 0.04;
+      ctx.clearRect(0, 0, w, h);
+      const glow = ctx.createRadialGradient(w * 0.72, h * 0.28, 0, w * 0.72, h * 0.28, w * 0.55);
+      glow.addColorStop(0, 'rgba(196,144,124,0.10)');
+      glow.addColorStop(1, 'transparent');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, w, h);
+      streaks.forEach(s => { s.update(); s.draw(); });
+      requestAnimationFrame(frame);
+    }
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('pointermove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    resize();
+    if (!reduceMotion) {
+      requestAnimationFrame(frame);
+    } else {
+      // Un solo frame estático para respetar preferencia de movimiento reducido
+      ctx.clearRect(0, 0, w, h);
+      streaks.forEach(s => s.draw());
+    }
+  })();
 </script>
 </body>
 </html>
