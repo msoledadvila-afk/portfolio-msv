@@ -451,6 +451,40 @@
       font-size: 0.9rem;
       line-height: 1.6;
     }
+    .product-stack {
+      display: flex; flex-wrap: wrap; gap: var(--space-2);
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border-light);
+    }
+    .product-stack span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-pill);
+      color: var(--accent-deep);
+      background: var(--accent-glow);
+    }
+
+    /* Grupos por área dentro de Productos ======================== */
+    .product-group + .product-group { margin-top: var(--space-16); }
+    .product-group-title {
+      display: flex; align-items: baseline; gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+    .product-group-title h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .product-group-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-light);
+    }
 
     /* TRUST ===================================================== */
     .trust-section { max-width: var(--container); }
@@ -849,70 +883,161 @@
 <section id="products" class="reveal products-section">
   <div class="section-head">
     <h2>Productos en <span>Acción</span></h2>
-    <p>Mirá cómo funcionan las aplicaciones que desarrollo. Cada video muestra un producto real en uso.</p>
+    <p>Mirá cómo funcionan las aplicaciones que desarrollo, organizadas por área: Ecosistema PCA, RRHH, Contable y proyectos de ventas, educación y uso personal.</p>
   </div>
-  <div class="product-grid">
-
+  <div class="product-group">
+    <div class="product-group-title"><h3>Ecosistema PCA & Talento Impulsa</h3></div>
+    <div class="product-grid">
     <div class="product-card">
       <div class="product-video">
         <video muted loop playsinline preload="metadata"
                onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/prompt-studio.mp4" type="video/mp4" />
-          <source src="videos/prompt-studio.webm" type="video/webm" />
+          <source src="videos/prompt-studio-pca.mp4" type="video/mp4" />
+          <source src="videos/prompt-studio-pca.webm" type="video/webm" />
         </video>
       </div>
       <div class="product-info">
         <div class="product-label">Productividad IA</div>
         <h3>Prompt Studio PCA</h3>
         <p>+30 herramientas con prompts pre-configurados para Ventas, RRHH, Atención al Cliente y Análisis de Datos.</p>
+        <div class="product-stack"><span>Firebase</span><span>Netlify</span></div>
       </div>
     </div>
-
     <div class="product-card">
       <div class="product-video">
         <video muted loop playsinline preload="metadata"
                onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/pack-autonomia.mp4" type="video/mp4" />
-          <source src="videos/pack-autonomia.webm" type="video/webm" />
+          <source src="videos/pack-autonomia-pca.mp4" type="video/mp4" />
+          <source src="videos/pack-autonomia-pca.webm" type="video/webm" />
         </video>
       </div>
       <div class="product-info">
         <div class="product-label">Automatización</div>
         <h3>Pack Autonomía PCA</h3>
         <p>Transforma tareas de 4 horas en flujos de 15 minutos. El humano siempre toma la decisión final.</p>
+        <div class="product-stack"><span>Firebase</span><span>Netlify</span></div>
       </div>
     </div>
-
     <div class="product-card">
       <div class="product-video">
         <video muted loop playsinline preload="metadata"
                onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/english-app.mp4" type="video/mp4" />
-          <source src="videos/english-app.webm" type="video/webm" />
+          <source src="videos/chatbot-pca.mp4" type="video/mp4" />
+          <source src="videos/chatbot-pca.webm" type="video/webm" />
         </video>
       </div>
       <div class="product-info">
-        <div class="product-label">E-Learning</div>
-        <h3>English App</h3>
-        <p>Aplicación web educativa con vocabulario, gramática y plantillas en un entorno inmersivo.</p>
+        <div class="product-label">Atención al Cliente</div>
+        <h3>Chatbot PCA</h3>
+        <p>Asistente conversacional que responde consultas frecuentes y deriva casos complejos a un humano.</p>
+        <div class="product-stack"><span>Google Sheets</span><span>Netlify</span><span>Render</span></div>
       </div>
     </div>
-
     <div class="product-card">
       <div class="product-video">
         <video muted loop playsinline preload="metadata"
                onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/dashboard-contable.mp4" type="video/mp4" />
-          <source src="videos/dashboard-contable.webm" type="video/webm" />
+          <source src="videos/hub-pca.mp4" type="video/mp4" />
+          <source src="videos/hub-pca.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="product-info">
+        <div class="product-label">Centro de Comando</div>
+        <h3>HUB PCA</h3>
+        <p>Punto de acceso único a todas las herramientas del ecosistema PCA, organizadas por área de trabajo.</p>
+        <div class="product-stack"><span>Firebase</span><span>Netlify</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-video">
+        <video muted loop playsinline preload="metadata"
+               onmouseenter="this.play()" onmouseleave="this.pause()">
+          <source src="videos/dashboard-talento-impulsa.mp4" type="video/mp4" />
+          <source src="videos/dashboard-talento-impulsa.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="product-info">
+        <div class="product-label">Gestión Integral</div>
+        <h3>Dashboard Talento Impulsa</h3>
+        <p>Panel de control de Talento Impulsa Consulting: seguimiento de clientes, sesiones y métricas de productividad.</p>
+        <div class="product-stack"><span>Google Sheets</span><span>Apps Script</span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="product-group">
+    <div class="product-group-title"><h3>RRHH</h3></div>
+    <div class="product-grid">
+    <div class="product-card">
+      <div class="product-video">
+        <video muted loop playsinline preload="metadata"
+               onmouseenter="this.play()" onmouseleave="this.pause()">
+          <source src="videos/prompt-studio-rrhh.mp4" type="video/mp4" />
+          <source src="videos/prompt-studio-rrhh.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="product-info">
+        <div class="product-label">RRHH</div>
+        <h3>Prompt Studio RRHH</h3>
+        <p>Reclutamiento, evaluación de desempeño y onboarding con métricas que optimizan la gestión del talento.</p>
+        <div class="product-stack"><span>Google Sheets</span><span>Apps Script</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-video">
+        <video muted loop playsinline preload="metadata"
+               onmouseenter="this.play()" onmouseleave="this.pause()">
+          <source src="videos/dashboard-hub-rrhh.mp4" type="video/mp4" />
+          <source src="videos/dashboard-hub-rrhh.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="product-info">
+        <div class="product-label">RRHH</div>
+        <h3>Dashboard HUB RRHH</h3>
+        <p>Centraliza indicadores de talento —rotación, clima, desempeño— en un solo panel para el área de RRHH.</p>
+        <div class="product-stack"><span>Google Sheets</span><span>Apps Script</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-video">
+        <video muted loop playsinline preload="metadata"
+               onmouseenter="this.play()" onmouseleave="this.pause()">
+          <source src="videos/dashboard-reclutamiento.mp4" type="video/mp4" />
+          <source src="videos/dashboard-reclutamiento.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="product-info">
+        <div class="product-label">RRHH</div>
+        <h3>Dashboard Reclutamiento</h3>
+        <p>Seguimiento de procesos de selección en tiempo real: postulantes, etapas y tiempos de cada búsqueda.</p>
+        <div class="product-stack"><span>Google Sheets</span><span>Apps Script</span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="product-group">
+    <div class="product-group-title"><h3>Contable</h3></div>
+    <div class="product-grid">
+    <div class="product-card">
+      <div class="product-video">
+        <video muted loop playsinline preload="metadata"
+               onmouseenter="this.play()" onmouseleave="this.pause()">
+          <source src="videos/sistema-contable.mp4" type="video/mp4" />
+          <source src="videos/sistema-contable.webm" type="video/webm" />
         </video>
       </div>
       <div class="product-info">
         <div class="product-label">Finanzas</div>
-        <h3>Dashboard Contable</h3>
+        <h3>Sistema Integral para Estudio Contable</h3>
         <p>Vencimientos, saldos y obligaciones en tiempo real. Control automatizado que elimina riesgos de multas.</p>
+        <div class="product-stack"><span>Google Sheets</span><span>Apps Script</span></div>
       </div>
     </div>
-
+    </div>
+  </div>
+  <div class="product-group">
+    <div class="product-group-title"><h3>Ventas, Educación & Proyectos Personales</h3></div>
+    <div class="product-grid">
     <div class="product-card">
       <div class="product-video">
         <video muted loop playsinline preload="metadata"
@@ -925,25 +1050,72 @@
         <div class="product-label">Ventas</div>
         <h3>Scripts Comerciales</h3>
         <p>Biblioteca interactiva para generar al instante mensajes de follow-up y cierres estandarizados.</p>
+        <div class="product-stack"><span>Google Sheets</span><span>Apps Script</span></div>
       </div>
     </div>
-
     <div class="product-card">
       <div class="product-video">
         <video muted loop playsinline preload="metadata"
                onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/rrhh-studio.mp4" type="video/mp4" />
-          <source src="videos/rrhh-studio.webm" type="video/webm" />
+          <source src="videos/english-app.mp4" type="video/mp4" />
+          <source src="videos/english-app.webm" type="video/webm" />
         </video>
       </div>
       <div class="product-info">
-        <div class="product-label">RRHH</div>
-        <h3>Prompt Studio RRHH</h3>
-        <p>Reclutamiento, evaluación de desempeño y onboarding con métricas que optimizan la gestión del talento.</p>
+        <div class="product-label">E-Learning</div>
+        <h3>English App</h3>
+        <p>Aplicación web educativa con vocabulario, gramática y plantillas en un entorno inmersivo.</p>
+        <div class="product-stack"><span>Google Sheets</span><span>Apps Script</span></div>
       </div>
     </div>
-
+    <div class="product-card">
+      <div class="product-video">
+        <video muted loop playsinline preload="metadata"
+               onmouseenter="this.play()" onmouseleave="this.pause()">
+          <source src="videos/dashboard-mantenimiento-aeronaves.mp4" type="video/mp4" />
+          <source src="videos/dashboard-mantenimiento-aeronaves.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="product-info">
+        <div class="product-label">Operaciones</div>
+        <h3>Dashboard Alerta Mantenimiento de Aeronaves</h3>
+        <p>Alertas de vencimientos de mantenimiento aeronáutico para anticipar controles y evitar incumplimientos.</p>
+        <div class="product-stack"><span>Google Sheets</span><span>Apps Script</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-video">
+        <video muted loop playsinline preload="metadata"
+               onmouseenter="this.play()" onmouseleave="this.pause()">
+          <source src="videos/prode-mundial.mp4" type="video/mp4" />
+          <source src="videos/prode-mundial.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="product-info">
+        <div class="product-label">Proyecto Personal</div>
+        <h3>Prode Mundial</h3>
+        <p>Plataforma de pronósticos para el Mundial con tabla de posiciones y seguimiento en tiempo real entre amigos.</p>
+        <div class="product-stack"><span>Firebase</span><span>Netlify</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-video">
+        <video muted loop playsinline preload="metadata"
+               onmouseenter="this.play()" onmouseleave="this.pause()">
+          <source src="videos/gastos-app.mp4" type="video/mp4" />
+          <source src="videos/gastos-app.webm" type="video/webm" />
+        </video>
+      </div>
+      <div class="product-info">
+        <div class="product-label">Proyecto Personal</div>
+        <h3>Gastos App</h3>
+        <p>Gestión de gastos familiares: categorización, balances mensuales y seguimiento del presupuesto del hogar.</p>
+        <div class="product-stack"><span>Firebase</span><span>Netlify</span></div>
+      </div>
+    </div>
+    </div>
   </div>
+
 </section>
 
 <!-- CONTENIDO & COMMUNITY MANAGEMENT ========================== -->
