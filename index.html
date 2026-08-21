@@ -566,7 +566,7 @@
     }
     .client-cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: var(--space-6);
     }
     .client-card {
@@ -653,6 +653,28 @@
       color: var(--client-accent, var(--accent-deep));
       background: color-mix(in srgb, var(--client-accent, var(--accent-deep)) 12%, transparent);
     }
+    .client-gallery-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      color: var(--text-dim);
+      margin-top: var(--space-6);
+      margin-bottom: var(--space-3);
+    }
+    .client-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-2);
+    }
+    .client-gallery img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .client-gallery img:hover { transform: scale(1.08); }
 
     /* CONTACT =================================================== */
     .contact { text-align: center; }
@@ -1153,6 +1175,13 @@
         <li>Copy orientado a captación de alumnos</li>
       </ul>
       <div class="client-platforms"><span>Instagram</span><span>Facebook</span></div>
+      <div class="client-gallery-label">Piezas reales</div>
+      <div class="client-gallery">
+        <img src="images/cm/nirvana-pilates/mockup_beneficios_reformer.png" alt="Pieza de beneficios del Pilates Reformer" loading="lazy" />
+        <img src="images/cm/nirvana-pilates/mockup_REFORMER.png" alt="Pieza de clases de Pilates Reformer" loading="lazy" />
+        <img src="images/cm/nirvana-pilates/mockup_YOGA.png" alt="Pieza de clases de Yoga" loading="lazy" />
+        <img src="images/cm/nirvana-pilates/mockup_Instructoras.png" alt="Pieza de presentación del equipo de instructoras" loading="lazy" />
+      </div>
     </div>
     <div class="client-card" style="--client-accent:#d1a17e">
       <div class="client-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></div>
@@ -1165,6 +1194,13 @@
         <li>Piezas gráficas con Canva IA</li>
       </ul>
       <div class="client-platforms"><span>Instagram</span><span>WhatsApp</span></div>
+      <div class="client-gallery-label">Piezas reales</div>
+      <div class="client-gallery">
+        <img src="images/cm/bienes-raices/mockup_01_compra_venta.png" alt="Pieza de carrusel de servicio compra-venta" loading="lazy" />
+        <img src="images/cm/bienes-raices/mockup_ubicacion.png" alt="Pieza de ficha de propiedad, ubicación" loading="lazy" />
+        <img src="images/cm/bienes-raices/mockup_destacados.png" alt="Pieza de ficha de propiedad, destacados" loading="lazy" />
+        <img src="images/cm/bienes-raices/mockup_whatsapp_status_v2.png" alt="Pieza de story de reactivación de feed" loading="lazy" />
+      </div>
     </div>
     <div class="client-card" style="--client-accent:#9db0c9">
       <div class="client-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><path d="M9 9a4.2 4.2 0 0 1 6 0"/><path d="M6.3 6.3a8.2 8.2 0 0 1 11.4 0"/><path d="M9.8 15.5a2.5 2.5 0 0 1 4.4 0"/></svg></div>
@@ -1177,6 +1213,32 @@
         <li>Estrategia de contenidos en Instagram</li>
       </ul>
       <div class="client-platforms"><span>Instagram</span></div>
+      <div class="client-gallery-label">Piezas reales</div>
+      <div class="client-gallery">
+        <img src="images/cm/zyntra/mockup_01-_ZYNTRA_X-PRO_Flyer_claro.png" alt="Pieza de flyer técnico X-PRO, versión clara" loading="lazy" />
+        <img src="images/cm/zyntra/mockup_01-_ZYNTRA_X-PRO_Flyer_oscuro.png" alt="Pieza de flyer técnico X-PRO, versión oscura" loading="lazy" />
+        <img src="images/cm/zyntra/mockup_post_motor_escaneo.png" alt="Pieza de post sobre el motor de escaneo" loading="lazy" />
+        <img src="images/cm/zyntra/mockup_story_planillas.png" alt="Pieza de story de captación B2B" loading="lazy" />
+      </div>
+    </div>
+    <div class="client-card" style="--client-accent:#8fa888">
+      <div class="client-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.2-9.3-8.3C1.2 8.4 2.6 5 6 5c2 0 3.4 1.2 6 3.8C14.6 6.2 16 5 18 5c3.4 0 4.8 3.4 3.3 6.7C19 15.8 12 20 12 20z"/></svg></div>
+      <div class="client-tag">Artesanías &amp; Decoración</div>
+      <h3>Emprendimiento de Artesanías</h3>
+      <p>Piezas de feed que muestran cada creación hecha a mano, con una estética cálida y cercana que acompaña el trabajo artesanal.</p>
+      <ul>
+        <li>Fotografía de producto y piezas de feed</li>
+        <li>Presentación de nuevas colecciones</li>
+        <li>Identidad visual coherente por temporada</li>
+      </ul>
+      <div class="client-platforms"><span>Instagram</span><span>Facebook</span></div>
+      <div class="client-gallery-label">Piezas reales</div>
+      <div class="client-gallery">
+        <img src="images/cm/monica-manualidades/mockup_2026-_BUDITAS.png" alt="Pieza de nuevas creaciones, buditas" loading="lazy" />
+        <img src="images/cm/monica-manualidades/mockup_2026_JABONES.png" alt="Pieza de jabones artesanales" loading="lazy" />
+        <img src="images/cm/monica-manualidades/mockup_SET_BAÑO__2_.png" alt="Pieza de set de baño colección invierno" loading="lazy" />
+        <img src="images/cm/monica-manualidades/mockup_COLGANTES.png" alt="Pieza de colgantes tejidos" loading="lazy" />
+      </div>
     </div>
   </div>
 </section>
