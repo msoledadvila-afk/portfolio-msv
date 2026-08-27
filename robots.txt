@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mariasoledadvila.netlify.app/sitemap.xml
