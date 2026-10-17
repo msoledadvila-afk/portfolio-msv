@@ -469,10 +469,16 @@
     .products-section {
       max-width: var(--container-wide);
     }
+    /* Grilla flexible: la última fila incompleta queda centrada (sin huecos) */
     .product-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-8);
+      --cols: 3;
+      --gap: var(--space-8);
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: var(--gap);
+    }
+    .product-grid > .product-card {
+      flex: 0 1 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+      min-width: 0;
     }
     .product-card {
       background: var(--bg-card);
@@ -486,16 +492,24 @@
       transform: translateY(-6px);
       box-shadow: var(--shadow-lg);
     }
+    /* Videos verticales (grabados en celular): se muestran completos, sin recorte */
     .product-video {
       width: 100%;
-      aspect-ratio: 4 / 3;
+      height: clamp(420px, 62vh, 580px);
+      padding: var(--space-6) var(--space-4);
       background: var(--bg-alt);
-      display: grid; place-items: center;
+      display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
     }
     .product-video video {
-      width: 100%; height: 100%;
-      object-fit: cover;
+      display: block;
+      height: 100%; width: auto; max-width: 100%;
+      aspect-ratio: 9 / 20;
+      object-fit: contain;
+      border-radius: 18px;
+      background: #000;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+      cursor: pointer;
       transition: transform 0.6s;
     }
     .product-card:hover .product-video video {
@@ -559,6 +573,7 @@
       font-weight: 600;
       color: var(--text);
       white-space: nowrap;
+      min-width: 0;
     }
     .product-group-title::after {
       content: '';
@@ -838,7 +853,7 @@
 
     @media (max-width: 1024px) {
       section { padding: var(--space-20) var(--space-6); }
-      .product-grid { gap: var(--space-6); }
+      .product-grid { --cols: 2; --gap: var(--space-6); }
       .nav-links { gap: var(--space-6); }
       .client-cards { grid-template-columns: repeat(2, 1fr); }
     }
@@ -879,8 +894,7 @@
       .about-grid { grid-template-columns: 1fr; gap: var(--space-8); }
       .eco-cards { grid-template-columns: 1fr; gap: var(--space-4); }
 
-      .product-grid { grid-template-columns: 1fr; gap: var(--space-6); }
-      .product-video { aspect-ratio: 16 / 10; }
+      .product-video { height: clamp(380px, 60vh, 520px); }
 
       .content-intro { grid-template-columns: 1fr; gap: var(--space-8); }
       .client-cards { grid-template-columns: 1fr; gap: var(--space-4); }
@@ -890,6 +904,11 @@
 
       .contact-links { flex-direction: column; align-items: stretch; max-width: 320px; margin-inline: auto; margin-top: var(--space-8); }
       .contact-links a { justify-content: center; }
+    }
+
+    @media (max-width: 600px) {
+      .product-grid { --cols: 1; --gap: var(--space-6); }
+      .product-group-title h3 { white-space: normal; }
     }
 
     @media (max-width: 480px) {
@@ -906,7 +925,7 @@
 
     @media (min-width: 1400px) {
       .products-section { max-width: var(--container-wide); }
-      .product-grid { gap: var(--space-10); }
+      .product-grid { --gap: var(--space-10); }
     }
   </style>
 </head>
@@ -986,17 +1005,15 @@
 <section id="products" class="reveal products-section" aria-labelledby="products-heading">
   <div class="section-head">
     <h2 id="products-heading">Productos en <span>Acción</span> — Software con IA para Pymes</h2>
-    <p>Mirá cómo funcionan las aplicaciones que desarrollo, organizadas por área: Ecosistema PCA, RRHH, Contable y proyectos de ventas, educación y uso personal.</p>
+    <p>Mirá cómo funcionan las aplicaciones que desarrollo, organizadas por área: Ecosistema PCA, RRHH, Contable, ventas, educación y operaciones.</p>
   </div>
   <div class="product-group">
     <div class="product-group-title"><h3>Ecosistema PCA & Talento Impulsa</h3></div>
     <div class="product-grid">
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/prompt-studio-pca.mp4" type="video/mp4" />
-          <source src="videos/prompt-studio-pca.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/prompt-studio-pca.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1008,10 +1025,8 @@
     </div>
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/pack-autonomia-pca.mp4" type="video/mp4" />
-          <source src="videos/pack-autonomia-pca.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/pack-autonomia-pca.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1023,10 +1038,8 @@
     </div>
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/chatbot-pca.mp4" type="video/mp4" />
-          <source src="videos/chatbot-pca.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/chatbot-pca.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1038,10 +1051,8 @@
     </div>
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/hub-pca.mp4" type="video/mp4" />
-          <source src="videos/hub-pca.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/hub-pca.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1053,10 +1064,8 @@
     </div>
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/dashboard-talento-impulsa.mp4" type="video/mp4" />
-          <source src="videos/dashboard-talento-impulsa.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/dashboard-talento-impulsa.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1073,10 +1082,8 @@
     <div class="product-grid">
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/prompt-studio-rrhh.mp4" type="video/mp4" />
-          <source src="videos/prompt-studio-rrhh.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/prompt-studio-rrhh.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1088,10 +1095,8 @@
     </div>
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/dashboard-hub-rrhh.mp4" type="video/mp4" />
-          <source src="videos/dashboard-hub-rrhh.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/dashboard-hub-rrhh.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1103,10 +1108,8 @@
     </div>
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/dashboard-reclutamiento.mp4" type="video/mp4" />
-          <source src="videos/dashboard-reclutamiento.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/dashboard-reclutamiento.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1123,10 +1126,8 @@
     <div class="product-grid">
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/sistema-contable.mp4" type="video/mp4" />
-          <source src="videos/sistema-contable.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/sistema-contable.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1139,14 +1140,12 @@
     </div>
   </div>
   <div class="product-group">
-    <div class="product-group-title"><h3>Ventas, Educación & Proyectos Personales</h3></div>
+    <div class="product-group-title"><h3>Ventas, Educación & Operaciones</h3></div>
     <div class="product-grid">
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/scripts-comerciales.mp4" type="video/mp4" />
-          <source src="videos/scripts-comerciales.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/scripts-comerciales.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1158,10 +1157,8 @@
     </div>
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/english-app.mp4" type="video/mp4" />
-          <source src="videos/english-app.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/english-app.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1173,10 +1170,8 @@
     </div>
     <div class="product-card">
       <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/dashboard-mantenimiento-aeronaves.mp4" type="video/mp4" />
-          <source src="videos/dashboard-mantenimiento-aeronaves.webm" type="video/webm" />
+        <video muted loop playsinline preload="metadata" data-action="toggle-video" aria-label="Demo en video">
+          <source src="videos/dashboard-mantenimiento-aeronaves.mp4#t=0.1" type="video/mp4" />
         </video>
       </div>
       <div class="product-info">
@@ -1184,36 +1179,6 @@
         <h3>Dashboard Alerta Mantenimiento de Aeronaves</h3>
         <p>Alertas de vencimientos de mantenimiento aeronáutico para anticipar controles y evitar incumplimientos.</p>
         <div class="product-stack"><span>Google Sheets</span><span>Apps Script</span></div>
-      </div>
-    </div>
-    <div class="product-card">
-      <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/prode-mundial.mp4" type="video/mp4" />
-          <source src="videos/prode-mundial.webm" type="video/webm" />
-        </video>
-      </div>
-      <div class="product-info">
-        <div class="product-label">Proyecto Personal</div>
-        <h3>Prode Mundial</h3>
-        <p>Plataforma de pronósticos para el Mundial con tabla de posiciones y seguimiento en tiempo real entre amigos.</p>
-        <div class="product-stack"><span>Firebase</span><span>Netlify</span></div>
-      </div>
-    </div>
-    <div class="product-card">
-      <div class="product-video">
-        <video muted loop playsinline preload="metadata"
-               onmouseenter="this.play()" onmouseleave="this.pause()">
-          <source src="videos/gastos-app.mp4" type="video/mp4" />
-          <source src="videos/gastos-app.webm" type="video/webm" />
-        </video>
-      </div>
-      <div class="product-info">
-        <div class="product-label">Proyecto Personal</div>
-        <h3>Gastos App</h3>
-        <p>Gestión de gastos familiares: categorización, balances mensuales y seguimiento del presupuesto del hogar.</p>
-        <div class="product-stack"><span>Firebase</span><span>Netlify</span></div>
       </div>
     </div>
     </div>
@@ -1483,6 +1448,37 @@
       ctx.clearRect(0, 0, w, h);
       streaks.forEach(s => s.draw());
     }
+  })();
+</script>
+<script>
+  // Videos de productos: se reproducen al entrar en pantalla (también en celular,
+  // donde no existe hover) y se pausan al salir. Tap/click alterna play/pausa.
+  (function () {
+    const videos = document.querySelectorAll('.product-video video');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const pausedByUser = new WeakSet();
+    function safePlay(v) {
+      try {
+        const p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      } catch (err) { /* autoplay bloqueado: queda el primer frame */ }
+    }
+    if (!reduce && 'IntersectionObserver' in window) {
+      const vobs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          const v = e.target;
+          if (e.isIntersecting && !pausedByUser.has(v)) safePlay(v);
+          else if (!e.isIntersecting) v.pause();
+        });
+      }, { threshold: 0.5 });
+      videos.forEach(v => vobs.observe(v));
+    }
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-action="toggle-video"]');
+      if (!el) return;
+      if (el.paused) { pausedByUser.delete(el); safePlay(el); }
+      else { pausedByUser.add(el); el.pause(); }
+    });
   })();
 </script>
 </body>
